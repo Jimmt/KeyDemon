@@ -1,0 +1,59 @@
+body {
+	background-color: lightgrey;
+}
+#page {
+	width: 100%;
+	text-align: center;
+}
+#word-preview {
+	border: 1px solid black;
+	background-color: white;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+#textbox {
+	border: 1px solid black;
+	margin-top: 10px;
+}
+
+.error {
+	background-color: rgb(255, 100, 100);
+}
+
+#reset {
+	width: 100px;
+	/*height: 50px;*/
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.current-word {
+	background-color: yellow;
+}
+
+.word {
+
+}
+
+#results {
+	background-color: white;
+	border: 1px solid black;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#results div span {
+	color: green;
+}
+
+.descriptor {
+	width: 100px;
+	display: inline;
+}
