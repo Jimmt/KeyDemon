@@ -91,7 +91,7 @@
 
     function generateText() {
         var alphabet = "abcdefghijklmnopqrstuvwxyz";
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 50; i++) {
             var word = "";
             for (var j = 0; j < 3 + Math.floor(Math.random() * 5); j++) {
                 word += alphabet.charAt(Math.floor(Math.random() * 26));
