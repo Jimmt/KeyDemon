@@ -14,10 +14,11 @@
 
     window.onload = function() {
         generateText();
-        setupListeners();
+        setupTextbox();
+        setupButtons();
     };
 
-    function setupListeners() {
+    function setupTextbox() {
         $("textbox").onkeydown = function(e) {
             if (!timerRunning) {
                 startTimer();
@@ -47,9 +48,29 @@
                 deletes++;
             }
         }
+    }
+
+    function setupButtons() {
         $("reset").onclick = function() {
             reset();
         }
+        $("random-letters").onclick = function() {
+            selectButton(this);
+        }
+        $("random-words").onclick = function() {
+            selectButton(this);
+        }
+        $("passages").onclick = function() {
+            selectButton(this);
+        }
+    }
+
+    function selectButton(element) {
+    	var prev = document.getElementsByClassName("selected")[0]
+        prev.classList.remove("selected");
+        prev.classList.add("unselected");
+        element.classList.remove("unselected");
+        element.classList.add("selected");
     }
 
 
