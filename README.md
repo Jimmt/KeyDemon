@@ -1,2 +1,2 @@
 # Key Demon
-Measures typing speed and other stats.
+A website that measures typing speed and other typing stats.
