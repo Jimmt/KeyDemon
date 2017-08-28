@@ -5,6 +5,7 @@
     <title>Key Demon</title>
     <link href="index.css" type="text/css" rel="stylesheet" />
     <script src="index.js" type="text/javascript"></script>
+    <script src="words.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -12,10 +13,15 @@
     	<h1>Key Demon</h1>
         <div id="word-preview">
         </div>
-        <div id="word-choices">
+        <div id="word-choices" class="option-box">
             <div id="random-letters" class="selected">Random letters</div>
             <div id="random-words" class="unselected">Random words</div>
             <div id="passages" class="unselected">Passages</div>
+        </div>
+        <hr id="line">
+        <div id="word-options" class="option-box">
+        	<div id="capitals" class="selected" >Capitalization</div>
+        	<div id="no-capitals" class="unselected">No Capitalization</div>
         </div>
         <input type="textfield" id="textbox" />
         <div id="reset">Reset</div>

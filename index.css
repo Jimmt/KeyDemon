@@ -27,7 +27,7 @@ body {
 
 #textbox {
     border: 1px solid black;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 24px;
     font-family: "FF Meta", "Times New Roman";
 }
@@ -59,7 +59,7 @@ body {
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 20px;
     font-size: 22px;
 }
 
@@ -74,16 +74,19 @@ body {
 }
 
 #word-choices {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
     margin-top: 15px;
 }
 
-#word-choices div {
+.option-box div {
     display: inline;
     padding: 2px 4px 2px 4px;
     cursor: pointer;
 }
 
-#word-choices div:hover {
+.option-box div:hover {
     color: black;
 }
 

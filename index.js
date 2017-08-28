@@ -4,6 +4,7 @@
     var $ = function(id) { return document.getElementById(id); }
 
     var words = [];
+    var dictionary = [];
     var currentIndex = 0;
     var wordsTyped = 0;
     var startTime = 0;
@@ -13,9 +14,10 @@
     var done = false;
 
     window.onload = function() {
-        generateText();
+        dictionary = getWords();
         setupTextbox();
         setupButtons();
+        generateRandomLetters();
     };
 
     function setupTextbox() {
@@ -55,18 +57,26 @@
             reset();
         }
         $("random-letters").onclick = function() {
-            selectButton(this);
+            generateRandomLetters();
+            selectButton("word-choices", this);
         }
         $("random-words").onclick = function() {
-            selectButton(this);
+            generateRandomWords();
+            selectButton("word-choices", this);
         }
         $("passages").onclick = function() {
-            selectButton(this);
+            selectButton("word-choices", this);
+        }
+        $("capitals").onclick = function() {
+            selectButton("word-options", this);
+        }
+        $("no-capitals").onclick = function() {
+            selectButton("word-options", this);
         }
     }
 
-    function selectButton(element) {
-    	var prev = document.getElementsByClassName("selected")[0]
+    function selectButton(group, element) {
+        var prev = document.querySelector("#" + group + " .selected");
         prev.classList.remove("selected");
         prev.classList.add("unselected");
         element.classList.remove("unselected");
@@ -78,6 +88,8 @@
         stopTimer();
         deletes = 0;
         wordsTyped = 0;
+        $("textbox").classList.remove("error");
+        $("textbox").value = "";
     }
 
     function truncate(input) {
@@ -110,22 +122,35 @@
         $("deletes-per-word").innerHTML = currentIndex == 0 ? 0 : truncate(deletes / currentIndex);
     }
 
-    function generateText() {
+    function generateRandomWords() {
+        $("word-preview").innerHTML = "";
+        for (var i = 0; i < 50; i++) {
+            var word = dictionary[Math.floor(Math.random() * dictionary.length)];
+            addWord(word, i == 0);
+        }
+    }
+
+    function generateRandomLetters() {
+        $("word-preview").innerHTML = "";
         var alphabet = "abcdefghijklmnopqrstuvwxyz";
         for (var i = 0; i < 50; i++) {
             var word = "";
             for (var j = 0; j < 3 + Math.floor(Math.random() * 5); j++) {
                 word += alphabet.charAt(Math.floor(Math.random() * 26));
             }
-            var wordElement = document.createElement("span");
-            wordElement.innerHTML = word;
-            wordElement.classList.add("word");
-            if (i == 0) {
-                wordElement.classList.add("current-word");
-            }
-            words.push(word);
-            $("word-preview").appendChild(wordElement);
-            $("word-preview").innerHTML += " ";
+            addWord(word, i == 0);
         }
+    }
+
+    function addWord(word, current) {
+        words.push(word);
+        var wordElement = document.createElement("span");
+        wordElement.innerHTML = word;
+        wordElement.classList.add("word");
+        if (current) {
+            wordElement.classList.add("current-word");
+        }
+        $("word-preview").appendChild(wordElement);
+        $("word-preview").innerHTML += " ";
     }
 })();
