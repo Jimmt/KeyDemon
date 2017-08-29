@@ -51,6 +51,10 @@ body {
     background-color: lightgrey;
 }
 
+.typed-word {
+	color: lightgrey;
+}
+
 .word {}
 
 #results {
@@ -64,13 +68,16 @@ body {
 }
 
 #results div span {
-    color: green;
+    color: black;
     font-family: Times;
+    text-decoration: underline;;
+    margin-left: 10px;
 }
 
 .descriptor {
     width: 100px;
     display: inline;
+    color: 	black;
 }
 
 #word-choices {

@@ -12,6 +12,9 @@
     var deletes = 0;
     var updateTimerId = 0;
     var done = false;
+    var mode = "letters";
+    var capitalizedLetters = false;
+    var capitalizedWords = false;
 
     window.onload = function() {
         dictionary = getWords();
@@ -35,6 +38,7 @@
                             done = true;
                             reset();
                         } else {
+                            document.querySelectorAll(".word")[currentIndex].classList.add("typed-word");
                             document.querySelectorAll(".word")[++currentIndex].classList.add("current-word");
                         }
                         $("textbox").value = "";
@@ -67,12 +71,6 @@
         $("passages").onclick = function() {
             selectButton("word-choices", this);
         }
-        $("capitals").onclick = function() {
-            selectButton("word-options", this);
-        }
-        $("no-capitals").onclick = function() {
-            selectButton("word-options", this);
-        }
     }
 
     function selectButton(group, element) {
@@ -83,13 +81,20 @@
         element.classList.add("selected");
     }
 
-
     function reset() {
         stopTimer();
         deletes = 0;
         wordsTyped = 0;
+        currentIndex = 0;
         $("textbox").classList.remove("error");
         $("textbox").value = "";
+        if (mode == "letters") {
+            generateRandomLetters();
+        } else if (mode == "words") {
+            generateRandomWords();
+        } else {
+
+        }
     }
 
     function truncate(input) {
@@ -123,6 +128,7 @@
     }
 
     function generateRandomWords() {
+        mode = "words";
         $("word-preview").innerHTML = "";
         for (var i = 0; i < 50; i++) {
             var word = dictionary[Math.floor(Math.random() * dictionary.length)];
@@ -131,6 +137,7 @@
     }
 
     function generateRandomLetters() {
+        mode = "letters";
         $("word-preview").innerHTML = "";
         var alphabet = "abcdefghijklmnopqrstuvwxyz";
         for (var i = 0; i < 50; i++) {
