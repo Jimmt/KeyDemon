@@ -1,4 +1,4 @@
-(function() {
+// (function() {
     "use strict";
 
     var $ = function(id) { return document.getElementById(id); }
@@ -58,13 +58,15 @@
 
     function setupButtons() {
         $("reset").onclick = function() {
-            reset();
+            reset(true);
         }
         $("random-letters").onclick = function() {
+            reset(false);
             generateRandomLetters();
             selectButton("word-choices", this);
         }
         $("random-words").onclick = function() {
+            reset(false);
             generateRandomWords();
             selectButton("word-choices", this);
         }
@@ -81,19 +83,21 @@
         element.classList.add("selected");
     }
 
-    function reset() {
+    function reset(generate) {
         stopTimer();
         deletes = 0;
         wordsTyped = 0;
         currentIndex = 0;
         $("textbox").classList.remove("error");
         $("textbox").value = "";
-        if (mode == "letters") {
-            generateRandomLetters();
-        } else if (mode == "words") {
-            generateRandomWords();
-        } else {
+        if (generate) {
+            if (mode == "letters") {
+                generateRandomLetters();
+            } else if (mode == "words") {
+                generateRandomWords();
+            } else {
 
+            }
         }
     }
 
@@ -128,6 +132,7 @@
     }
 
     function generateRandomWords() {
+        words = [];
         mode = "words";
         $("word-preview").innerHTML = "";
         for (var i = 0; i < 50; i++) {
@@ -137,6 +142,7 @@
     }
 
     function generateRandomLetters() {
+        words = [];
         mode = "letters";
         $("word-preview").innerHTML = "";
         var alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -160,4 +166,4 @@
         $("word-preview").appendChild(wordElement);
         $("word-preview").innerHTML += " ";
     }
-})();
+// })();
