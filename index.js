@@ -35,10 +35,12 @@
                     if (!done) {
                         document.getElementsByClassName("current-word")[0].classList.remove("current-word");
                         if (currentIndex == words.length - 1) {
+							$("textbox").disabled = true;
+							document.querySelectorAll(".word")[currentIndex].classList.add("typed-word");
                             done = true;
-                            reset();
+							reset(false);
                         } else {
-                            document.querySelectorAll(".word")[currentIndex].classList.add("typed-word");
+							document.querySelectorAll(".word")[currentIndex].classList.add("typed-word");
                             document.querySelectorAll(".word")[++currentIndex].classList.add("current-word");
                         }
                         $("textbox").value = "";
@@ -85,12 +87,15 @@
 
     function reset(generate) {
         stopTimer();
+		done = false;
         deletes = 0;
         wordsTyped = 0;
         currentIndex = 0;
         $("textbox").classList.remove("error");
         $("textbox").value = "";
         if (generate) {
+			updateResults();
+			$("textbox").disabled = false;
             if (mode == "letters") {
                 generateRandomLetters();
             } else if (mode == "words") {
